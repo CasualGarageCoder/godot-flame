@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://yy56705ik2o0"]
+
+[ext_resource type="Material" uid="uid://cuph4ldxwy5h6" path="res://resources/materials/flame.tres" id="1_m5gc5"]
+[ext_resource type="Script" uid="uid://c02vawelruy6t" path="res://scripts/procedural/geosphere.gd" id="2_urumm"]
+
+[sub_resource type="PrimitiveMesh" id="PrimitiveMesh_ovq0y"]
+resource_local_to_scene = false
+resource_name = ""
+lightmap_size_hint = Vector2i(0, 0)
+custom_aabb = AABB(0, 0, 0, 0, 0, 0)
+flip_faces = false
+add_uv2 = false
+uv2_padding = 2.0
+script = ExtResource("2_urumm")
+subdivision = 4
+height = 2.0
+diameter = 0.7
+metadata/_custom_type_script = ExtResource("2_urumm")
+
+[node name="Flame" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+material_override = ExtResource("1_m5gc5")
+mesh = SubResource("PrimitiveMesh_ovq0y")

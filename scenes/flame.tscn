@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnp2ahq85e1dl"]
+
+[ext_resource type="Script" uid="uid://bh4xmpfktupbg" path="res://scripts/flame.gd" id="1_pxmxa"]
+[ext_resource type="Texture2D" uid="uid://d2add6lfhjdc2" path="res://resources/images/felt-pens.png" id="2_knc85"]
+[ext_resource type="Texture2D" uid="uid://pp1mqs8rdjk8" path="res://resources/images/eraser-icon.png" id="3_pxmxa"]
+[ext_resource type="PackedScene" uid="uid://yy56705ik2o0" path="res://scenes/flame_object.tscn" id="4_cyk1v"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gh6gq"]
+viewport_path = NodePath("DrawingViewport")
+
+[sub_resource type="Environment" id="Environment_ovq0y"]
+background_mode = 1
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.13
+
+[node name="Demo" type="Node"]
+script = ExtResource("1_pxmxa")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectedColor" type="ColorPickerButton" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+edit_alpha = false
+
+[node name="PenButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("2_knc85")
+
+[node name="EraserButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("3_pxmxa")
+
+[node name="EditionPanel" type="Panel" parent="UI/VBoxContainer"]
+custom_minimum_size = Vector2(272, 528)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Container" type="CenterContainer" parent="UI/VBoxContainer/EditionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FlameTexture" type="TextureRect" parent="UI/VBoxContainer/EditionPanel/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("ViewportTexture_gh6gq")
+
+[node name="ColorPicker" type="ColorPicker" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 298.0
+offset_bottom = 576.0
+
+[node name="Viewer" type="Node3D" parent="."]
+
+[node name="Flame" parent="Viewer" instance=ExtResource("4_cyk1v")]
+unique_name_in_owner = true
+skeleton = NodePath("")
+
+[node name="Camera" type="Camera3D" parent="Viewer"]
+unique_name_in_owner = true
+transform = Transform3D(1, -7.19671e-09, 4.28957e-16, 7.19671e-09, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 3)
+environment = SubResource("Environment_ovq0y")
+current = true
+fov = 62.8
+
+[node name="Light" type="DirectionalLight3D" parent="Viewer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="DrawingViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 512)
+render_target_clear_mode = 2
+
+[node name="Drawer" type="Control" parent="DrawingViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

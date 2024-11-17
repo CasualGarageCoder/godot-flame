@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cuph4ldxwy5h6"]
+
+[ext_resource type="Shader" uid="uid://o1q8dwg1mjw8" path="res://resources/shaders/flame.gdshader" id="1_p54dt"]
+
+[sub_resource type="Curve" id="Curve_cyk1v"]
+_data = [Vector2(0, 0.0568436), 0.0, 0.0, 0, 0, Vector2(0.734406, 0.912491), 0.0, 0.0, 0, 0, Vector2(1, 0.5819), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fhela"]
+width = 1024
+curve = SubResource("Curve_cyk1v")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_p54dt")
+shader_parameter/attenuation = SubResource("CurveTexture_fhela")
+shader_parameter/displace_strenght = 0.37
+shader_parameter/flame_speed = 1.0
+shader_parameter/offset = 0.3
+shader_parameter/noise_factor = Vector3(3, 3, 3)
