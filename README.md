@@ -16,7 +16,7 @@ It's in fact a 3D transposition of the classical 2D flame effect.
 
 ## Resources
 
-As mentioned before, this visual effect has been ported in few hours from a blender turorial. To do so, some help has been needed by grabbing really effective solution from all over the internet.
+As mentioned before, this visual effect has been ported in few hours from a blender tutorial. To do so, some help has been needed by grabbing really effective solutions from all over the internet.
 
 ### The Sphere
 
