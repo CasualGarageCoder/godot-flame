@@ -52,6 +52,8 @@ uniform sampler2D decal : repeat_enable;
 
 uniform sampler2D attenuation : repeat_disable;
 
+uniform sampler2D xz_scale : repeat_disable;
+
 uniform float displace_strenght : hint_range(-16.0, 16.0, 0.01) = 0.;
 
 uniform float flame_speed : hint_range(-5., 5., 0.01) = 1.;
@@ -63,6 +65,9 @@ uniform vec3 noise_factor = vec3(3.);
 varying vec3 vNormal;
 
 void vertex() {
+
+	VERTEX.xz *= texture(xz_scale, vec2(UV.y, 0)).r;
+
 	vec3 neighbor1 = VERTEX + offset * TANGENT;
 	vec3 bitangent = normalize(cross(NORMAL, TANGENT));
 	vec3 neighbor2 = VERTEX + offset * bitangent;
